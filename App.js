@@ -2,18 +2,13 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, StatusBar} from 'react-native';
 import { Provider} from 'mobx-react';
 
-import DrawerMenu from './src/global/navigation/DrawerMenu';
-
+import Navigator from './src/routes/Drawer'
 
 import Store from './src/global/store/Store';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Provider Store={Store}>
-        <DrawerMenu />
-      </Provider>
-    </View>
+    <Navigator/>
   );
 }
 
