@@ -39,6 +39,8 @@ export default class Authentication extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    justifyContent:'center',
+    alignItems:'center',
     flex: 1,
   },
 });

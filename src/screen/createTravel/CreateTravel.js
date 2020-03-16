@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button} from 'react-native';
 import { observer } from 'mobx-react';
+import {Header} from 'react-native-elements'
 
 import Store from './../../global/store/Store'
 
@@ -15,9 +16,14 @@ export default class createTravel extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>createTravel</Text>
-        <Button title='Retour' onPress={()=>{this.props.navigation.navigate('MainMenuStack')}}/>
-
+        <Header
+          containerStyle={{
+            backgroundColor: '#428B9D',
+          }}
+          leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:()=>this.props.navigation.navigate("MainMenu") }}
+          centerComponent={{ text: 'CREATION DE VOYAGE', style: { color: '#fff'} }}
+          rightComponent={{ icon: 'settings', color: '#fff' }}
+        />
       </View>
     );
   }
@@ -25,8 +31,6 @@ export default class createTravel extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems:'center',
-    justifyContent:'center',
     flex: 1,
   },
 });

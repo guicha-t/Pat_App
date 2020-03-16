@@ -29,8 +29,8 @@ export default class CountriesPlanisphere extends Component {
         <MapView
           style={styles.map}
           region={{
-            latitude: 22.78825,
-            longitude: 25.4324,
+            latitude: 20.78825,
+            longitude: 16.4324,
             latitudeDelta: 100.0,
             longitudeDelta: 100.0,
           }}>
