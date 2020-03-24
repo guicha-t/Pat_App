@@ -94,7 +94,7 @@ export default class MainMenu extends Component {
             <View style={styles.buttonContainer}>
               <Button
                 buttonStyle={{height: '100%', backgroundColor: '#428B9D'}}
-                disabled={Store.IsLog === 1 ? false : true}
+                disabled={Store.IsLog === 0 ? false : true}
                 title="OUTILS"
                 onPress={()=>{this.props.navigation.navigate('ToolsMenu')}}
                 />

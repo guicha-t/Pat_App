@@ -17,6 +17,8 @@ import EmergenciesMenu from '../screen/emergencies/EmergenciesMenu'
 import ToolsMenu from '../screen/tools/ToolsMenu'
 import MainMenu from '../screen/mainMenu/MainMenu'
 import Meteo from '../screen/meteo/Meteo'
+import Light from '../screen/tools/Light'
+
 import UserProfil from '../screen/userProfil/UserProfil'
 import UserInformations from '../screen/userProfil/UserInformations'
 import UserTravels from '../screen/userProfil/UserTravels'
@@ -26,6 +28,9 @@ import UserTravels from '../screen/userProfil/UserTravels'
 const RootDrawerNavigator = createDrawerNavigator({
   CountriesList: {
     screen: CountriesList,
+  },
+  Light: {
+    screen: Light
   },
   MainMenu: {
     screen: MainMenu,
@@ -72,7 +77,7 @@ const RootDrawerNavigator = createDrawerNavigator({
   },
   ToolsMenu: {
     screen: ToolsMenu
-  }
+  },
 })
 
 export default createAppContainer(RootDrawerNavigator);

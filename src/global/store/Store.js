@@ -7,6 +7,10 @@ class Store {
   @observable UserUsername = ''
   @observable UserDescription = ''
 
+  @observable InfoCountry = '1'
+  @observable DataCountry = []
+
+
   @observable CurrentCity = ''
   @observable CurrentCountry = ''
   @observable CurrentCountryCode = ''

@@ -56,7 +56,7 @@ export default class ToolsMenu extends Component {
               <Button
                 buttonStyle={{height: '100%', backgroundColor: '#428B9D'}}
                 title="LAMPE TORCHE"
-                onPress={()=>{this.props.navigation.navigate('Meteo')}}
+                onPress={()=>{this.props.navigation.navigate('Light')}}
                 />
             </View>
             <View style={styles.buttonContainer}>
@@ -74,7 +74,7 @@ export default class ToolsMenu extends Component {
                 />
             </View>
             <View style={styles.buttonContainer}>
-            
+
             </View>
 
 
