@@ -1,16 +1,18 @@
 import { observable, action } from 'mobx';
 
 class Store {
+//Auth
   @observable IsLog = 0
   @observable UserEmail = ''
   @observable UserToken = ''
   @observable UserUsername = ''
-  @observable UserDescription = ''
 
+//Select Country
   @observable InfoCountry = '1'
   @observable DataCountry = []
+  @observable KeyReturn = ''
 
-
+//GPS MainMenu
   @observable CurrentCity = ''
   @observable CurrentCountry = ''
   @observable CurrentCountryCode = ''
@@ -27,10 +29,6 @@ class Store {
 
   @action setUserUsername(param) {
     this.UserUsername = param;
-  }
-
-  @action setUserDescription(param) {
-    this.UserDescription = param;
   }
 
   @action setUserToken(param) {

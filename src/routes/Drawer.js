@@ -1,9 +1,7 @@
 import {createDrawerNavigator} from 'react-navigation-drawer'
 import {createAppContainer} from 'react-navigation'
 
-import Authentication from '../screen/authentication/Authentication'
-import CreateAccount from '../screen/authentication/CreateAccount'
-import ForgetPassword from '../screen/authentication/ForgetPassword'
+import SplashScreen from '../screen/splashScreen/SplashScreen'
 
 import CountriesMenu from '../screen/countriesFinder/CountriesMenu'
 import CountriesList from '../screen/countriesFinder/CountriesList'
@@ -20,45 +18,35 @@ import Meteo from '../screen/meteo/Meteo'
 import Light from '../screen/tools/Light'
 
 import UserProfil from '../screen/userProfil/UserProfil'
-import UserInformations from '../screen/userProfil/UserInformations'
-import UserTravels from '../screen/userProfil/UserTravels'
-
 
 
 const RootDrawerNavigator = createDrawerNavigator({
+  SplashScreen: {
+    screen: SplashScreen,
+  },
+  MainMenu: {
+    screen: MainMenu,
+  },
+  CreateTravel: {
+    screen: CreateTravel,
+  },
+  CountriesPlanisphere: {
+    screen: CountriesPlanisphere,
+  },
   CountriesList: {
     screen: CountriesList,
   },
   Light: {
     screen: Light
   },
-  MainMenu: {
-    screen: MainMenu,
-  },
   UserProfil: {
     screen: UserProfil,
-  },
-  Authentication: {
-    screen: Authentication,
-  },
-  CreateAccount: {
-    screen: CreateAccount,
-  },
-  ForgetPassword: {
-    screen: ForgetPassword,
   },
   CountriesMenu: {
     screen: CountriesMenu,
   },
-
-  CountriesPlanisphere: {
-    screen: CountriesPlanisphere,
-  },
   CountryProfil: {
     screen: CountryProfil,
-  },
-  CreateTravel: {
-    screen: CreateTravel,
   },
   DestinationFinder: {
     screen: DestinationFinder,
@@ -68,12 +56,6 @@ const RootDrawerNavigator = createDrawerNavigator({
   },
   Meteo: {
     screen: Meteo,
-  },
-  UserInformations: {
-    screen: UserInformations,
-  },
-  UserTravels: {
-    screen: UserTravels,
   },
   ToolsMenu: {
     screen: ToolsMenu

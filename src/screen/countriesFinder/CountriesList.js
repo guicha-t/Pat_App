@@ -69,6 +69,7 @@ export default class CountriesList extends Component {
     //        Alert.alert("Echec lors de la connexion")
          } else {
            Store.DataCountry = data;
+           Store.KeyReturn = '1';
            this.props.navigation.navigate("CountryProfil");
 
          }
@@ -77,7 +78,6 @@ export default class CountriesList extends Component {
          console.error(error);
          return { name: "network error", description: "" };
        });
-
   }
 
   render() {

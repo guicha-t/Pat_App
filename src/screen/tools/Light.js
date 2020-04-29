@@ -6,7 +6,6 @@ import Expo, { Constants } from 'expo';
 import { Magnetometer } from 'expo-sensors';
 
 import { Text, View, Animated, Easing, StyleSheet,ImageBackground, Alert} from 'react-native';
-import Compass from './Compass.js'
 
 import Store from './../../global/store/Store'
 

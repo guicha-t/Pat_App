@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, Alert} from 'react-native';
+import { View, Text, StyleSheet, Image, Alert, AsyncStorage} from 'react-native';
 import { observer } from 'mobx-react';
 import {Header, Button} from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -11,9 +11,20 @@ import Store from './../../global/store/Store'
 export default class MainMenu extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this._bootstrapAsync();
   }
+
+  _bootstrapAsync = async () => {
+    const localEmail = await AsyncStorage.getItem('localEmail');
+    const localToken = await AsyncStorage.getItem('localToken');
+    const localUsername = await AsyncStorage.getItem('localUsername');
+    if (localEmail != null) {
+      Store.setUserToken(localToken)
+      Store.setUserEmail(localEmail)
+      Store.setUserUsername(localUsername)
+      Store.setIsLog(1)
+    }
+  };
 
   componentDidMount() {
     publicIP()
@@ -37,6 +48,7 @@ export default class MainMenu extends Component {
         // 'Unable to get IP address.'
       });
   }
+
 
   render() {
     return (
@@ -94,12 +106,11 @@ export default class MainMenu extends Component {
             <View style={styles.buttonContainer}>
               <Button
                 buttonStyle={{height: '100%', backgroundColor: '#428B9D'}}
-                disabled={Store.IsLog === 0 ? false : true}
+                disabled={Store.IsLog === 1 ? false : true}
                 title="OUTILS"
                 onPress={()=>{this.props.navigation.navigate('ToolsMenu')}}
                 />
             </View>
-
           </View>
 
           <View style={styles.emergenciesContainer}>

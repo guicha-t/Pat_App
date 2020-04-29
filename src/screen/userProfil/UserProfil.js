@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Modal, Alert, AlertIOS, ToastAndroid, Platform} from 'react-native';
+import { View, Text, StyleSheet, Modal, Alert, AlertIOS, ToastAndroid, Platform, AsyncStorage} from 'react-native';
 import { observer } from 'mobx-react';
 import {Header, Button, Input, Icon, Avatar} from 'react-native-elements'
 
@@ -13,13 +13,12 @@ export default class UserProfil extends Component {
       isModalConnexionVisible : false,
       isModalCreationVisible : false,
 
-      emailCo: 'romain.gadrat@epitech.eu',
-      passwordCo: 'fodid',
+      courrielCo: 'tom@hotmail.fr',
+      passwordCo: 'ben',
 
       usernameCr: '',
       passwordCr: '',
-      courrielCr: '',
-      descriptionCr: '',
+      courrielCr: 'tom@hotmail.fr',
     };
   }
 
@@ -29,10 +28,10 @@ export default class UserProfil extends Component {
           <View style={{flex: 1, backgroundColor: '#FFF', padding: 20}}>
             <View style={{flex: 0.4, justifyContent:'center', alignItems:'center', borderColor: '#428B9D', borderWidth: 2}}>
               <Input
-                placeholder='Descri'
+                placeholder='Email'
                 containerStyle={{paddingBottom: 10}}
-                value={this.state.emailCo}
-                onChangeText={(emailCo) => this.setState({ emailCo })}
+                value={this.state.courrielCo}
+                onChangeText={(courrielCo) => this.setState({ courrielCo })}
                 />
               <Input
                 placeholder='Mot de passe'
@@ -45,7 +44,7 @@ export default class UserProfil extends Component {
                 buttonStyle={{height: 60, width: 300, backgroundColor: '#428B9D'}}
                 titleStyle={{color: "#FFF"}}
                 title="CONNEXION"
-                onPress={()=>{this.setConnexion(this.state.emailCo, this.state.passwordCo)}}
+                onPress={()=>{this.setConnexion(this.state.courrielCo, this.state.passwordCo)}}
                 />
             </View>
             <View style={{flex: 0.6, justifyContent:'center', alignItems:'center', borderColor: '#428B9D', borderWidth: 2, marginTop: 20}}>
@@ -67,12 +66,6 @@ export default class UserProfil extends Component {
                 containerStyle={{paddingBottom: 10}}
                 value={this.state.courrielCr}
                 onChangeText={(courrielCr) => this.setState({ courrielCr })}
-                />
-              <Input
-                placeholder='Description'
-                containerStyle={{paddingBottom: 10}}
-                value={this.state.descriptionCr}
-                onChangeText={(descriptionCr) => this.setState({ descriptionCr })}
                 />
               <Button
                 buttonStyle={{height: 60, width: 300, backgroundColor: '#428B9D'}}
@@ -99,7 +92,6 @@ export default class UserProfil extends Component {
             <View style={{flex: 0.6, alignItems:'center'}}>
               <Text style={{fontSize: 16}}>Bonjour {Store.UserUsername}</Text>
               <Text style={{fontSize: 16}}>{Store.UserEmail}</Text>
-              <Text style={{fontSize: 16, fontStyle: "italic"}}>Desc: "{Store.UserDescription}"</Text>
             </View>
 
             <View style={{flex: 0.1, alignItems:'center', justifyContent:'center'}}>
@@ -115,16 +107,53 @@ export default class UserProfil extends Component {
       }
   }
 
-   setDisconnection = () => {
+  async _removeItemValue(key) {
+    try {
+      await AsyncStorage.removeItem(key);
+      return true;
+    }
+    catch(exception) {
+      return false;
+    }
+  }
+
+   setDisconnection() {
      Store.setIsLog(0)
+     this._removeItemValue("localEmail")
+     this._removeItemValue("localToken")
+     this._removeItemValue("localUsername")
      Store.setUserEmail("")
      Store.setUserToken("")
      Store.setUserUsername("")
-     Store.setUserDescription("")
-//     ToastAndroid.show("Déconnexion", ToastAndroid.SHORT)
+     ToastAndroid.show("Déconnexion", ToastAndroid.SHORT)
+     this.props.navigation.navigate('MainMenu')
     };
 
-   setConnexion = (paramEmail, paramPwd) => {
+    _storeToken = async (param) => {
+      try {
+        await AsyncStorage.setItem('localToken', param);
+      } catch (error) {
+        // Error saving data
+      }
+    }
+
+    _storeEmail = async (param) => {
+      try {
+        await AsyncStorage.setItem('localEmail', param);
+      } catch (error) {
+        // Error saving data
+      }
+    }
+
+    _storeUsername = async (param) => {
+      try {
+        await AsyncStorage.setItem('localUsername', param);
+      } catch (error) {
+        // Error saving data
+      }
+    }
+
+   setConnexion(paramEmail, paramPwd) {
      fetch('http://193.70.90.162/auth/login', {
        method: 'POST',
        headers: {
@@ -147,13 +176,16 @@ export default class UserProfil extends Component {
         .then(([res, data]) => {
           console.log(res, data);
           if (data == null) {
-    //        Alert.alert("Echec lors de la connexion")
+            Alert.alert("Echec lors de la connexion")
           } else {
             Store.setUserToken(data.token)
             Store.setUserEmail(data.user.email)
             Store.setUserUsername(data.user.username)
-            Store.setUserDescription(data.user.description)
             Store.setIsLog(1)
+            this._storeToken(data.token)
+            this._storeEmail(data.user.email)
+            this._storeUsername(data.user.username)
+            this.props.navigation.navigate('MainMenu')
           }
         })
         .catch(error => {
@@ -190,7 +222,6 @@ export default class UserProfil extends Component {
             Alert.alert("Echec lors de la création du compte")
           } else {
             this.setConnexion(this.state.courrielCr, this.state.passwordCr)
-            Alert.alert(JSON.stringify(data))
           }
         })
         .catch(error => {

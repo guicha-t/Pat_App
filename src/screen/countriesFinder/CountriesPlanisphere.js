@@ -11,7 +11,73 @@ export default class CountriesPlanisphere extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      Markers: [],
     };
+  }
+
+  componentDidMount() {
+    fetch('http://193.70.90.162/pays', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(response => {
+         const statusCode = response.status;
+         if (statusCode == 200) {
+           const data = response.json();
+           return Promise.all([statusCode, data]);
+         } else {
+           return Promise.all([statusCode]);
+         }
+       })
+       .then(([res, data]) => {
+         console.log(data);
+         if (data == null) {
+   //        Alert.alert("Echec lors de la connexion")
+         } else {
+           this.setState({'Markers':data})
+         }
+       })
+       .catch(error => {
+         console.error(error);
+         return { name: "network error", description: "" };
+       });
+  }
+
+  goToProfilCountry(param) {
+    Store.InfoCountry = param;
+
+    fetch('http://193.70.90.162/pays/' + Store.InfoCountry, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(response => {
+         const statusCode = response.status;
+         if (statusCode == 200) {
+           const data = response.json();
+           return Promise.all([statusCode, data]);
+         } else {
+           return Promise.all([statusCode]);
+         }
+       })
+       .then(([res, data]) => {
+    //         console.log(data);
+         if (data == null) {
+    //        Alert.alert("Echec lors de la connexion")
+         } else {
+           Store.DataCountry = data;
+           Store.KeyReturn = '2';
+           this.props.navigation.navigate("CountryProfil");
+
+         }
+       })
+       .catch(error => {
+         console.error(error);
+         return { name: "network error", description: "" };
+       });
   }
 
   render() {
@@ -26,32 +92,27 @@ export default class CountriesPlanisphere extends Component {
           rightComponent={{ icon: 'settings', color: '#fff' }}
         />
         <View style={styles.bodyContainer}>
-        <MapView
-          style={styles.map}
-          region={{
-            latitude: 20.78825,
-            longitude: 16.4324,
-            latitudeDelta: 100.0,
-            longitudeDelta: 100.0,
-          }}>
+          <MapView
+            style={styles.map}
+            region={{
+              latitude: 20.78825,
+              longitude: 16.4324,
+              latitudeDelta: 100.0,
+              longitudeDelta: 100.0,
+            }}>
 
-            <MapView.Marker
-              coordinate={{
-              latitude: 47.082892,
-              longitude: 2.396577999999977}}
-              pinColor={'tan'}
-              onPress={() => this.props.navigation.navigate('CountryProfil', {itemId: 1})}
-              image = {require('../../assets/flagMarker/france.png')}
-            />
-
-            <MapView.Marker
-             coordinate={{
-             latitude: 51.1657,
-             longitude: 10.4515}}
-             pinColor={'tan'}
-             onPress={() => this.props.navigation.navigate('CountryProfil', {itemId: 2})}
-             image = {require('../../assets/flagMarker/france.png')}
-            />
+            {this.state.Markers.map(Marker => (
+              <MapView.Marker
+                coordinate={{
+                  latitude: Marker.lat,
+                  longitude: Marker.lng
+                }}
+                pinColor={'tan'}
+                key={Marker.idPays}
+                onPress={() => this.goToProfilCountry(Marker.idPays)}
+                image = {require('../../assets/flagMarker/france.png')}
+              />
+            ))}
 
           </MapView>
         </View>

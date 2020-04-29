@@ -17,6 +17,14 @@ export default class CountryProfil extends Component {
   }
 
 
+  getBack() {
+    if (Store.KeyReturn == '1') {
+      this.props.navigation.navigate("CountriesList")
+    } else {
+      this.props.navigation.navigate("CountriesPlanisphere")
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -24,7 +32,7 @@ export default class CountryProfil extends Component {
           containerStyle={{
             backgroundColor: '#428B9D',
           }}
-          leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:()=>this.props.navigation.navigate("CountriesList") }}
+          leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:()=>this.getBack()}}
           centerComponent={{ text: 'FICHE PAYS', style: { color: '#fff'} }}
           rightComponent={{ icon: 'settings', color: '#fff' }}
         />

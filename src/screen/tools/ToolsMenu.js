@@ -67,13 +67,6 @@ export default class ToolsMenu extends Component {
                 />
             </View>
             <View style={styles.buttonContainer}>
-              <Button
-                buttonStyle={{height: '100%', backgroundColor: '#428B9D'}}
-                title="BOUSSOLE"
-                onPress={()=>{this.props.navigation.navigate('Meteo')}}
-                />
-            </View>
-            <View style={styles.buttonContainer}>
 
             </View>
 
