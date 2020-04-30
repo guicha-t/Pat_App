@@ -19,6 +19,8 @@ import Light from '../screen/tools/Light'
 
 import UserProfil from '../screen/userProfil/UserProfil'
 
+import CustomDrawerContentComponent from './CustomDrawerContentComponent';
+
 
 const RootDrawerNavigator = createDrawerNavigator({
   SplashScreen: {
@@ -60,6 +62,13 @@ const RootDrawerNavigator = createDrawerNavigator({
   ToolsMenu: {
     screen: ToolsMenu
   },
+},{
+  initialRouteName: 'MainMenu',
+  contentComponent: CustomDrawerContentComponent,
+  contentOptions: {
+    activeTintColor: '#FFFFFF',
+    activeBackgroundColor: '#428B9D',
+  }
 })
 
 export default createAppContainer(RootDrawerNavigator);
