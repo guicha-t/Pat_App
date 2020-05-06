@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import { View, Text, StyleSheet, Image} from 'react-native';
 import {Header} from 'react-native-elements'
 import { observer } from 'mobx-react';
 import MapView from 'react-native-maps';
@@ -109,9 +109,9 @@ export default class CountriesPlanisphere extends Component {
                 }}
                 pinColor={'tan'}
                 key={Marker.idPays}
-                onPress={() => this.goToProfilCountry(Marker.idPays)}
-                image = {require('../../assets/flagMarker/france.png')}
-              />
+                onPress={() => this.goToProfilCountry(Marker.idPays)}>
+                <Image source={{uri: 'http://193.70.90.162/pins/'+Marker.idPays+'.png'}} style={{ width: 60, height: 60 }} />
+              </MapView.Marker>
             ))}
 
           </MapView>

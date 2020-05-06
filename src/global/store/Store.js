@@ -7,6 +7,9 @@ class Store {
   @observable UserToken = ''
   @observable UserUsername = ''
 
+//UserTrips
+  @observable UserTrips = []
+
 //Select Country
   @observable InfoCountry = '1'
   @observable DataCountry = []
@@ -33,6 +36,10 @@ class Store {
 
   @action setUserToken(param) {
     this.UserToken = param;
+  }
+
+  @action setUserTrips(param) {
+    this.UserTrips = param;
   }
 
   @action setCurrentLocation(city, country, countryCode, lattitude, longitute) {

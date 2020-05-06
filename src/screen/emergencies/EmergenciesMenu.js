@@ -7,35 +7,23 @@ import Store from './../../global/store/Store'
 
 
 var data = [
-  {country: 'Allemagne', capitale: 'Berlin', police: '50', firefighter: '60', rescue: '70', poison: '80', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'France', capitale: 'Paris', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Italie', capitale: 'Rome', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Espagne', capitale: 'Madrid', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Portugal', capitale: 'Lisbonne', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Suisse', capitale: 'Genève', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Angleterre', capitale: 'Londres', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Irlande', capitale: 'Dublin', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Islande', capitale: 'pyat', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Pays-bas', capitale: 'Amsterdam', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Allemagne', capitale: 'Berlin', police: '50', firefighter: '60', rescue: '70', poison: '80', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'France', capitale: 'Paris', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Italie', capitale: 'Rome', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Espagne', capitale: 'Madrid', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Portugal', capitale: 'Lisbonne', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Suisse', capitale: 'Genève', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Angleterre', capitale: 'Londres', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Irlande', capitale: 'Dublin', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Islande', capitale: 'pyat', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Allemagne', capitale: 'Berlin', police: '50', firefighter: '60', rescue: '70', poison: '80', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'France', capitale: 'Paris', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Italie', capitale: 'Rome', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Espagne', capitale: 'Madrid', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Portugal', capitale: 'Lisbonne', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Suisse', capitale: 'Genève', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Angleterre', capitale: 'Londres', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Irlande', capitale: 'Dublin', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-  {country: 'Islande', capitale: 'pyat', police: '01', firefighter: '02', rescue: '03', poison: '04', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
-
+  {country: 'AFGHANISTAN', capitale: 'Kaboul', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/afghanistan/flag-800.png'},
+  {country: 'AFRIQUE DU SUD', capitale: 'Pretoria', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/south-africa/flag-800.png'},
+  {country: 'ALBANIE', capitale: 'Tirana', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/albania/flag-800.png'},
+  {country: 'ALGERIE', capitale: 'Alger', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/algeria/flag-800.png'},
+  {country: 'ALLEMAGNE', capitale: 'Berlin', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/germany/flag-800.png'},
+  {country: 'ANDORRE', capitale: 'Andorra la Vella', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/andorra/flag-800.png'},
+  {country: 'ARABIE SAOUDITE', capitale: 'Riad', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/saudi-arabia/flag-800.png'},
+  {country: 'ARGENTINE', capitale: 'Buenos Aires', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/argentina/flag-800.png'},
+  {country: 'ARMENIE', capitale: 'Eriwan', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/armenia/flag-800.png'},
+  {country: 'AUSTRALIE', capitale: 'Canberra', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/australia/flag-800.png'},
+  {country: 'AUTRICHE', capitale: 'Vienna', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/austria/flag-800.png'},
+  {country: 'BELGIQUE', capitale: 'Bruxelles', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/belgium/flag-800.png'},
+  {country: 'BRESIL', capitale: 'Brasília', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/brazil/flag-800.png'},
+  {country: 'CAMEROUN', capitale: 'Yaoundé', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/cameroon/flag-800.png'},
+  {country: 'CANADA', capitale: 'Ottawa', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/canada/flag-800.png'},
+  {country: 'CHILI', capitale: 'Santiago', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/chile/flag-800.png'},
+  {country: 'CHINE', capitale: 'Pékin', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/china/flag-800.png'},
 ];
 
 var screen = Dimensions.get('window');
@@ -190,7 +178,7 @@ export default class EmergenciesMenu extends Component {
           presentationSheet={'pageSheet'}
           visible={this.state.isModalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
+            this.toggleModal()
           }}>
             <View style={{flex: 1, backgroundColor:'#428B9D'}}>
               <FlatList
@@ -202,9 +190,9 @@ export default class EmergenciesMenu extends Component {
                    underlayColor='#FFF'>
                    <View style={{backgroundColor:'#FAFAFA', flexDirection: 'row', margin: 2, height: 48}}>
                     <View style={{flex: 0.2, justifyContent:'center', alignItems:'center'}}>
-                      <Image style={styles.picture} source={{uri: item.urlFlag}}/>
+                      <Image style={styles.picture} source={{uri:item.urlFlag}}/>
                     </View>
-                    <View style={{flex: 0.9, justifyContent:'center'}}>
+                    <View style={{flex: 0.8, justifyContent:'center'}}>
                       <Text style={styles.primaryText}>{item.country}</Text>
                       <Text style={styles.secondaryText}>{item.capitale}</Text>
                     </View>

@@ -7,13 +7,15 @@ import {Header} from 'react-native-elements'
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
 import Store from './../../global/store/Store'
-
+import Loading from './../../global/loading/Loading';
 
 @observer
 export default class createTravel extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
+
       Countries: [],
       currentCountry: 'Selectionne une destination',
       currentId: "",
@@ -62,14 +64,15 @@ export default class createTravel extends Component {
          console.error(error);
          return { name: "network error", description: "" };
        });
+       this.setState({'loading':false})
   }
 
 
   onDateChange(date, type) {
     if (type === 'END_DATE') {
-      this.setState({'EndDate':moment(date).format('MM/DD/YYYY')});
+      this.setState({'EndDate':moment(date).format('MM-DD-YYYY')});
     } else {
-      this.setState({'StartDate':moment(date).format('MM/DD/YYYY')});
+      this.setState({'StartDate':moment(date).format('MM-DD-YYYY')});
       this.setState({'EndDate':null});
     }
   }
@@ -117,7 +120,6 @@ export default class createTravel extends Component {
   }
 
   saveAndQuit() {
-    Alert.alert(this.state.currentId + " " + this.state.StartDate + " " + this.state.EndDate + " " +this.state.currentLabel)
     fetch('http://193.70.90.162/trips/createTrip', {
       method: 'POST',
       headers: {
@@ -127,34 +129,27 @@ export default class createTravel extends Component {
       },
       body: JSON.stringify({
         idPays: this.state.currentId,
+        PayIdPays: this.state.currentId,
         dateDepart: this.state.StartDate,
         dateRetour: this.state.EndDate,
         TypeVoyage: this.state.currentLabel,
         nbPersonnes: this.state.Participant,
       }),
-    }).then(response => {
-          console.log(JSON.stringify(response))
-         const statusCode = response.status;
-         if (statusCode == 200) {
-           const data = response.json();
-           return Promise.all([statusCode, data]);
-         } else {
-           return Promise.all([statusCode]);
-         }
-       })
-       .then(([res, data]) => {
-         console.log(res);
-         if (data == null) {
-           Alert.alert("Echec lors de la création d'un voyage")
-         } else {
-           this.setConnexion(this.state.courrielCr, this.state.passwordCr)
-           Alert.alert(JSON.stringify(data))
-         }
-       })
-       .catch(error => {
+    }).then(function(response) {
+        const statusCode = response.status
+        const data = response.json()
+        return Promise.all([statusCode, data]);
+      }).then(([statusCode, data]) => {
+        if (statusCode != 200) {
+          Alert.alert(data.message)
+        } else {
+          this.props.navigation.navigate('UserTrips')
+        }
+        console.log(statusCode)
+        console.log(data)
+      }).catch(error => {
          console.error(error);
-         return { name: "network error", description: "" };
-       });
+     });
   }
 
   render() {
@@ -165,7 +160,11 @@ export default class createTravel extends Component {
 
     const startDate  =  selectedStartDate ? selectedStartDate.toString() : '';
     const endDate = selectedEndDate ? selectedEndDate.toString() : '';
-
+    if (this.state.loading) {
+        return (
+          <Loading navigation={this.props.navigation}/>
+        )
+      }
     return (
       <View style={styles.container}>
         <Header
@@ -224,15 +223,6 @@ export default class createTravel extends Component {
              }
             </Picker>
           </View>
-          <Text>idPays: {this.state.currentId}</Text>
-          <Text>dateDepart: {this.state.StartDate}</Text>
-          <Text>dateRetour: {this.state.EndDate}</Text>
-          <Text>TypeVoyage: {this.state.currentLabel}</Text>
-          <Text>nbPersonnes: {this.state.Participant}</Text>
-
-
-
-
         </View>
 
         <View style={styles.footer}>

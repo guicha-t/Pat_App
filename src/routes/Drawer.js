@@ -15,9 +15,10 @@ import EmergenciesMenu from '../screen/emergencies/EmergenciesMenu'
 import ToolsMenu from '../screen/tools/ToolsMenu'
 import MainMenu from '../screen/mainMenu/MainMenu'
 import Meteo from '../screen/meteo/Meteo'
-import Light from '../screen/tools/Light'
+import SharingGPS from '../screen/tools/SharingGPS'
 
 import UserProfil from '../screen/userProfil/UserProfil'
+import UserTrips from '../screen/userProfil/UserTrips'
 
 import CustomDrawerContentComponent from './CustomDrawerContentComponent';
 
@@ -38,11 +39,14 @@ const RootDrawerNavigator = createDrawerNavigator({
   CountriesList: {
     screen: CountriesList,
   },
-  Light: {
-    screen: Light
+  SharingGPS: {
+    screen: SharingGPS
   },
   UserProfil: {
     screen: UserProfil,
+  },
+  UserTrips: {
+    screen: UserTrips,
   },
   CountriesMenu: {
     screen: CountriesMenu,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Modal, Alert, AlertIOS, ToastAndroid, Platform, AsyncStorage} from 'react-native';
+import { View, Text, StyleSheet, Modal, Alert, AlertIOS, ToastAndroid, Platform, AsyncStorage, FlatList} from 'react-native';
 import { observer } from 'mobx-react';
 import {Header, Button, Input, Icon, Avatar} from 'react-native-elements'
 
@@ -13,14 +13,20 @@ export default class UserProfil extends Component {
       isModalConnexionVisible : false,
       isModalCreationVisible : false,
 
-      courrielCo: 'tom@hotmail.fr',
-      passwordCo: 'ben',
+      courrielCo: 'bill@gmail.com',
+      passwordCo: 'didier',
 
       usernameCr: '',
       passwordCr: '',
-      courrielCr: 'tom@hotmail.fr',
+      courrielCr: 'bill@gmail.com',
+
+      trips: [],
     };
   }
+
+    getFirstCharUsername() {
+      return (Store.UserUsername.charAt(0).toUpperCase());
+    }
 
   contentOfBody(){
       if (!Store.IsLog) {
@@ -83,7 +89,7 @@ export default class UserProfil extends Component {
               <Avatar
               size="xlarge"
               rounded
-              title="RG"
+              title={this.getFirstCharUsername()}
               onPress={() => console.log("Works!")}
               activeOpacity={0.7}
               />
@@ -97,8 +103,8 @@ export default class UserProfil extends Component {
             <View style={{flex: 0.1, alignItems:'center', justifyContent:'center'}}>
               <Button
                 buttonStyle={{height: 60, width: 300, backgroundColor: '#428B9D', marginBottom: 10}}
-                title="DECONNEXION"
-                onPress={()=>{this.setDisconnection()}}
+                title="MES VOYAGES"
+                onPress={()=>this.props.navigation.navigate("UserTrips")}
                 />
             </View>
 
@@ -207,28 +213,21 @@ export default class UserProfil extends Component {
          email: this.state.courrielCr,
          description: this.state.descriptionCr
        }),
-     }).then(response => {
-          const statusCode = response.status;
-          if (statusCode == 200) {
-            const data = response.json();
+     }).then(function(response) {
+            const statusCode = response.status
+            const data = response.json()
             return Promise.all([statusCode, data]);
-          } else {
-            return Promise.all([statusCode]);
-          }
-        })
-        .then(([res, data]) => {
-          console.log(res, data);
-          if (data == null) {
-            Alert.alert("Echec lors de la création du compte")
-          } else {
+          }).then(([statusCode, data]) => {
+            console.log(statusCode)
+            console.log(data)
+            //Do Something here
             this.setConnexion(this.state.courrielCr, this.state.passwordCr)
-          }
-        })
-        .catch(error => {
-          console.error(error);
-          return { name: "network error", description: "" };
-        });
+
+          }).catch(error => {
+             console.error(error);
+         });
    }
+
 
   render() {
     return (
@@ -239,7 +238,7 @@ export default class UserProfil extends Component {
           }}
           leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:()=>this.props.navigation.navigate("MainMenu") }}
           centerComponent={{ text: 'ESPACE PERSONNEL', style: { color: '#fff'} }}
-          rightComponent={{ icon: 'exit-to-app', color: '#fff', onPress:()=>this.props.navigation.navigate('MainMenu') }}
+          rightComponent={{ icon: 'exit-to-app', color: '#fff', onPress:()=>{this.setDisconnection()}}}
         />
       {this.contentOfBody()}
       </View>

@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, Alert, AsyncStorage} from 'react-native';
+import { View, Text, StyleSheet, Image, Alert, AsyncStorage, Console} from 'react-native';
 import { observer } from 'mobx-react';
 import {Header, Button} from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import publicIP from 'react-native-public-ip';
 
-import Store from './../../global/store/Store'
+
+import * as Location from 'expo-location';
+
+import Store from './../../global/store/Store';
+import Loading from './../../global/loading/Loading';
 
 @observer
 export default class MainMenu extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loading: true,
+      Location: {},
+      Lat: '',
+      Lng: '',
+    };
     this._bootstrapAsync();
   }
 
@@ -27,6 +37,17 @@ export default class MainMenu extends Component {
   };
 
   componentDidMount() {
+    this._getLocation();
+  }
+
+  _getLocation = async () => {
+    let { status } = await Location.requestPermissionsAsync();
+    if (status !== 'granted') {
+      setErrorMsg('Permission to access location was denied');
+    }
+    let location = await Location.getCurrentPositionAsync({});
+    this.setState({'Lat':location.coords.latitude})
+    this.setState({'Lng':location.coords.longitude})
     publicIP()
       .then(ip => {
         fetch('http://api.ipstack.com/'+ ip + '?access_key=a1227cca7b943a9095682ee11d17bc5f&format=1', {
@@ -37,7 +58,8 @@ export default class MainMenu extends Component {
           },
         }).then((response) => response.json())
             .then((responseJson) => {
-              Store.setCurrentLocation(responseJson.city,responseJson.country_name,responseJson.country_code,responseJson.latitude,responseJson.longitute,)
+              Store.setCurrentLocation(responseJson.city,responseJson.country_name,responseJson.country_code,this.state.Lat,this.state.Lng)
+              this.setState({'loading':false})
             })
             .catch((error) => {
               console.error(error);
@@ -45,12 +67,15 @@ export default class MainMenu extends Component {
       })
       .catch(error => {
         console.log(error);
-        // 'Unable to get IP address.'
       });
   }
 
-
   render() {
+    if (this.state.loading) {
+        return (
+          <Loading navigation={this.props.navigation}/>
+        )
+      }
     return (
       <View style={{flex:1}}>
         <Header
@@ -59,7 +84,7 @@ export default class MainMenu extends Component {
           }}
           leftComponent={{ icon: 'menu', color: '#fff', onPress:()=>this.props.navigation.openDrawer() }}
           centerComponent={{ text: 'PICK A TRIP', style: { color: '#fff' } }}
-          rightComponent={{ icon: 'settings', color: '#fff' , onPress:()=>this.props.navigation.navigate('UserProfil') }}
+          rightComponent={{ icon: 'person-pin-circle', color: '#fff' , onPress:()=>this.props.navigation.navigate('UserProfil') }}
         />
 
 
@@ -100,7 +125,7 @@ export default class MainMenu extends Component {
                 buttonStyle={{height: '100%', backgroundColor: '#428B9D'}}
                 disabled={Store.IsLog === 1 ? false : true}
                 title="DENICHEUR DE DESTINATION"
-                onPress={()=>{this.props.navigation.navigate('DestinationFinder')}}
+                onPress={()=>{this.props.navigation.navigate('UserProfil')}}
                 />
             </View>
             <View style={styles.buttonContainer}>

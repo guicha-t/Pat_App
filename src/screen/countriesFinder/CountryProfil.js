@@ -36,8 +36,13 @@ export default class CountryProfil extends Component {
           centerComponent={{ text: 'FICHE PAYS', style: { color: '#fff'} }}
           rightComponent={{ icon: 'settings', color: '#fff' }}
         />
-        <View style={{height: 80, alignItems:'center', justifyContent:'center'}}>
-          <Text style={{fontSize: 22, fontWeight: 'bold'}}>{Store.DataCountry.nomPays}</Text>
+        <View style={{height: 80, flexDirection:'row'}}>
+          <View style={{flex: 0.4, alignItems:'flex-end', paddingRight: 20, justifyContent:'center'}}>
+            <Image style={{width: 50, height: 30, borderWidth: 1, borderColor: 'black'}} source={{uri: 'http://193.70.90.162/flags/'+Store.DataCountry.idPays+'.png'}}/>
+          </View>
+          <View style={{flex: 0.6, justifyContent:"center"}}>
+            <Text style={{fontSize: 22, fontWeight: 'bold'}}>{Store.DataCountry.nomPays}</Text>
+          </View>
         </View>
         <ScrollView style={{}}>
           <View style={{height: 200, backgroundColor:'#428B9D', justifyContent:'center', alignItems:'center', paddingLeft: 10, paddingRight: 10}}>

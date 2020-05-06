@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert} from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert, Image} from 'react-native';
 import { observer } from 'mobx-react';
 import {Header} from 'react-native-elements'
 
@@ -69,6 +69,7 @@ export default class CountriesList extends Component {
     //        Alert.alert("Echec lors de la connexion")
          } else {
            Store.DataCountry = data;
+           console.log(data)
            Store.KeyReturn = '1';
            this.props.navigation.navigate("CountryProfil");
 
@@ -100,7 +101,10 @@ export default class CountriesList extends Component {
             <TouchableOpacity
               onPress={() => this.goToProfilCountry(item.idPays)}
               style={{flex: 1,height: 60, flexDirection:'row', justifyContent:'center', borderBottomWidth: 1, borderColor: '#DCDCDC'}}>
-              <View style={{flex: 1, paddingLeft: 10, justifyContent: 'center'}}>
+              <View style={{flex: 0.2, paddingLeft: 10, justifyContent: 'center', alignItems:'center'}}>
+                <Image style={{width: 50, height: 30, borderWidth: 1, borderColor: 'black'}} source={{uri: 'http://193.70.90.162/flags/'+item.idPays+'.png'}}/>
+              </View>
+              <View style={{flex: 0.8, paddingLeft: 10, justifyContent: 'center'}}>
                 <Text style={{fontSize: 16}}>{item.nomPays}</Text>
               </View>
             </TouchableOpacity>

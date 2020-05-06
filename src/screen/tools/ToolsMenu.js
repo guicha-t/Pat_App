@@ -55,22 +55,19 @@ export default class ToolsMenu extends Component {
             <View style={styles.buttonContainer}>
               <Button
                 buttonStyle={{height: '100%', backgroundColor: '#428B9D'}}
-                title="LAMPE TORCHE"
-                onPress={()=>{this.props.navigation.navigate('Light')}}
-                />
-            </View>
-            <View style={styles.buttonContainer}>
-              <Button
-                buttonStyle={{height: '100%', backgroundColor: '#428B9D'}}
                 title="MA POSITION GPS"
-                onPress={()=>{this.props.navigation.navigate('Meteo')}}
+                onPress={()=>{this.props.navigation.navigate('SharingGPS')}}
                 />
             </View>
             <View style={styles.buttonContainer}>
 
             </View>
+            <View style={styles.buttonContainer}>
 
+            </View>
+            <View style={styles.buttonContainer}>
 
+            </View>
           </View>
           <View style={{flex: 0.1}}>
 

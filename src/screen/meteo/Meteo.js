@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Alert} from 'react-native';
+import { View, Text, StyleSheet, Alert, Image} from 'react-native';
 import { observer } from 'mobx-react';
-import {Header, Input, Button, SearchBar, Image} from 'react-native-elements'
+import {Header, Input, Button, SearchBar} from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Store from './../../global/store/Store'
@@ -17,7 +17,7 @@ export default class Meteo extends Component {
       rRegion: '',
       rCountry: '',
       rDegrees: '',
-      rIcon: 'https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png',
+      rIcon: 'https://qph.fs.quoracdn.net/main-qimg-a477b86f6aa9c1767332eae705e2fdb8',
       rDescription: '',
       rWind: '',
       rWindDir: '',
@@ -29,7 +29,7 @@ export default class Meteo extends Component {
 
   componentDidMount() {
       if (Store.CurrentCity != '') {
-        fetch('https://api.weatherstack.com/current?access_key=cf11288b984bbe9c070bbd3c6a7d63e2&query=' + Store.CurrentCity +'&language=fr', {
+        fetch('http://api.weatherstack.com/current?access_key=36398a681ab7ca7c0f38bc56bce44cd2&query=' + Store.CurrentCity, {
           method: 'GET',
           headers: {
             Accept: 'application/json',
@@ -39,7 +39,7 @@ export default class Meteo extends Component {
             .then((responseJson) => {
 
               if (responseJson.success == false) {
-                Alert.alert("echec")
+                Alert.alert("Module météo indisponible")
               } else {
                 this.setState({'Search':Store.CurrentCity});
                 this.setState({'rCity':responseJson.location.name});
@@ -47,6 +47,7 @@ export default class Meteo extends Component {
                 this.setState({'rCountry':responseJson.location.country});
                 this.setState({'rDegrees':responseJson.current.temperature});
                 this.setState({'rDescription':responseJson.current.weather_descriptions});
+                this.setState({'rIcon':responseJson.current.weather_icons[0]});
                 this.setState({'rWind':responseJson.current.wind_speed});
                 this.setState({'rWindDir':responseJson.current.wind_dir});
                 this.setState({'colorText':'black'});
@@ -60,7 +61,7 @@ export default class Meteo extends Component {
   }
 
   callMeteoApi = () => {
-    fetch('https://api.weatherstack.com/current?access_key=cf11288b984bbe9c070bbd3c6a7d63e2&query=' + this.state.Search+'&language=fr', {
+    fetch('http://api.weatherstack.com/current?access_key=36398a681ab7ca7c0f38bc56bce44cd2&query=' + this.state.Search, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -70,7 +71,7 @@ export default class Meteo extends Component {
         .then((responseJson) => {
 
           if (responseJson.success == false) {
-            Alert.alert("echec")
+            Alert.alert("Module météo indisponible")
           } else {
             this.setState({'response':responseJson});
             this.setState({'rCity':responseJson.location.name});
@@ -78,6 +79,7 @@ export default class Meteo extends Component {
             this.setState({'rCountry':responseJson.location.country});
             this.setState({'rDegrees':responseJson.current.temperature});
             this.setState({'rDescription':responseJson.current.weather_descriptions});
+            this.setState({'rIcon':responseJson.current.weather_icons[0]});
             this.setState({'rWind':responseJson.current.wind_speed});
             this.setState({'rWindDir':responseJson.current.wind_dir});
             this.setState({'colorText':'black'});
@@ -133,13 +135,16 @@ export default class Meteo extends Component {
             <View style={{flex: 0.2, alignItems:'center', justifyContent:'center'}}>
               <Text style={{fontSize: 24}}>{this.state.rCity}</Text>
               <Text style={{fontSize: 20}}>{this.state.rRegion} {this.state.rCountry}</Text>
+              <Text style={{fontSize: 20, color: this.state.colorText}}>Maintenant</Text>
+
             </View>
             <View style={{flex: 0.4, backgroundColor:this.state.colorContainer, alignItems:'center', justifyContent:'center'}}>
-              <Text style={{fontSize: 20, color: this.state.colorText}}>Aujourd'hui</Text>
               <Text style={{fontSize: 36, color: this.state.colorText}}>{this.state.rDegrees}°c</Text>
               <Text style={{fontSize: 20}}>{this.state.rDescription}</Text>
-
-
+              <Image
+                style={{height: 50, width: 50}}
+                source={{uri: this.state.rIcon}}
+              />
               <Text style={{fontSize: 20, color: this.state.colorText}}>Vitesse du vent: {this.state.rWind}km/h</Text>
               <Text style={{fontSize: 20, color: this.state.colorText}}>Direction du vent: {this.state.rWindDir}</Text>
 
