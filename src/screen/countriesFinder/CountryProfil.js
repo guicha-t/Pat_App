@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, Dimensions, Image} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Dimensions, Image, Alert} from 'react-native';
 import { observer } from 'mobx-react';
 import {Header} from 'react-native-elements'
 
@@ -13,10 +13,14 @@ export default class CountryProfil extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      LocalData : ""
     };
   }
 
+  componentDidMount() {
 
+  }
+  
   getBack() {
     if (Store.KeyReturn == '1') {
       this.props.navigation.navigate("CountriesList")
@@ -36,7 +40,9 @@ export default class CountryProfil extends Component {
           centerComponent={{ text: 'FICHE PAYS', style: { color: '#fff'} }}
           rightComponent={{ icon: 'settings', color: '#fff' }}
         />
-        <View style={{height: 80, flexDirection:'row'}}>
+
+
+        <View style={{height: 80, flexDirection:'row', borderBottomWidth: 2, borderColor:"#428B9D"}}>
           <View style={{flex: 0.4, alignItems:'flex-end', paddingRight: 20, justifyContent:'center'}}>
             <Image style={{width: 50, height: 30, borderWidth: 1, borderColor: 'black'}} source={{uri: 'http://193.70.90.162/flags/'+Store.DataCountry.idPays+'.png'}}/>
           </View>
@@ -112,6 +118,21 @@ export default class CountryProfil extends Component {
             <View style={{flex: 0.4, justifyContent:'center'}}><Text style={{fontWeight: 'bold'}}>Climat</Text></View>
             <View style={{flex: 0.4, justifyContent:'center'}}><Text>{Store.DataCountry.infPays.climat}</Text></View>
           </View>
+
+          <ScrollView
+            horizontal={true}
+            >
+          { Store.PicCountry.map((item, key)=>(
+           <Image
+             key={key}
+             style={{height: screenWidth, width: screenWidth}}
+             source={{
+               uri: 'http://193.70.90.162' + item,
+             }}
+           />)
+           )}
+          </ScrollView>
+
         </ScrollView>
       </View>
     );

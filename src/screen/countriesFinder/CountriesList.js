@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert, Image} from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert, Image, Platform, Linking} from 'react-native';
+import NetInfo from "@react-native-community/netinfo";
 import { observer } from 'mobx-react';
 import {Header} from 'react-native-elements'
 
@@ -22,28 +23,44 @@ export default class CountriesList extends Component {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-    }).then(response => {
-         const statusCode = response.status;
-         if (statusCode == 200) {
-           const data = response.json();
-           return Promise.all([statusCode, data]);
-         } else {
-           return Promise.all([statusCode]);
-         }
-       })
-       .then(([res, data]) => {
-         console.log(data);
-         if (data == null) {
-   //        Alert.alert("Echec lors de la connexion")
-         } else {
-           this.setState({'Countries':data})
-         }
-       })
-       .catch(error => {
+    }).then(function(response) {
+        const statusCode = response.status
+        const data = response.json()
+        return Promise.all([statusCode, data]);
+      }).then(([statusCode, data]) => {
+        if (statusCode != 200) {
+          Alert.alert(data.message)
+        } else {
+          this.setState({'Countries':data})
+        }
+        console.log(statusCode)
+        console.log(data)
+      }).catch(error => {
          console.error(error);
-         return { name: "network error", description: "" };
-       });
+     });
   }
+
+
+  PrintData() {
+    this.retrieveItem("LocalData").then((goals) => {
+        console.log(JSON.parse(goals))
+              }).catch((error) => {
+              //this callback is executed when your Promise is rejected
+              console.log('Promise is rejected with error: ' + error);
+              });
+  }
+
+  async retrieveItem(key) {
+      try {
+        const retrievedItem =  await AsyncStorage.getItem(key);
+        const item = JSON.parse(retrievedItem);
+        return item;
+      } catch (error) {
+        console.log(error.message);
+      }
+      return
+    }
+
 
   goToProfilCountry(param) {
     Store.InfoCountry = param;
@@ -54,31 +71,44 @@ export default class CountriesList extends Component {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-    }).then(response => {
-         const statusCode = response.status;
-         if (statusCode == 200) {
-           const data = response.json();
-           return Promise.all([statusCode, data]);
-         } else {
-           return Promise.all([statusCode]);
-         }
-       })
-       .then(([res, data]) => {
-    //         console.log(data);
-         if (data == null) {
-    //        Alert.alert("Echec lors de la connexion")
-         } else {
-           Store.DataCountry = data;
-           console.log(data)
-           Store.KeyReturn = '1';
-           this.props.navigation.navigate("CountryProfil");
-
-         }
-       })
-       .catch(error => {
+    }).then(function(response) {
+        const statusCode = response.status
+        const data = response.json()
+        return Promise.all([statusCode, data]);
+      }).then(([statusCode, data]) => {
+        if (statusCode != 200) {
+          Alert.alert(data.message)
+        } else {
+          fetch('http://193.70.90.162/pays/images/' + Store.InfoCountry, {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+          }).then(function(response) {
+              const statusCode = response.status
+              const data = response.json()
+              return Promise.all([statusCode, data]);
+            }).then(([statusCode, data]) => {
+              if (statusCode != 200) {
+                Alert.alert(data.message)
+              } else {
+                Store.PicCountry = data
+              }
+              this.setState({'loading':false})
+            }).catch(error => {
+               console.error(error);
+           });
+          Store.DataCountry = data;
+          console.log(data)
+          Store.KeyReturn = '1';
+          this.props.navigation.navigate("CountryProfil");
+        }
+        this.setState({'loading':false})
+      }).catch(error => {
          console.error(error);
-         return { name: "network error", description: "" };
-       });
+     });
+
   }
 
   render() {

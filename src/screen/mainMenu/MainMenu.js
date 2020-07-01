@@ -16,7 +16,7 @@ export default class MainMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loading: false,
       Location: {},
       Lat: '',
       Lng: '',
@@ -63,10 +63,12 @@ export default class MainMenu extends Component {
             })
             .catch((error) => {
               console.error(error);
+              this.setState({'loading':false})
             });
       })
       .catch(error => {
         console.log(error);
+        this.setState({'loading':false})
       });
   }
 
@@ -125,7 +127,7 @@ export default class MainMenu extends Component {
                 buttonStyle={{height: '100%', backgroundColor: '#428B9D'}}
                 disabled={Store.IsLog === 1 ? false : true}
                 title="DENICHEUR DE DESTINATION"
-                onPress={()=>{this.props.navigation.navigate('UserProfil')}}
+                onPress={()=>{this.props.navigation.navigate('DestinationFinder')}}
                 />
             </View>
             <View style={styles.buttonContainer}>

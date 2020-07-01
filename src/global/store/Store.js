@@ -13,6 +13,7 @@ class Store {
 //Select Country
   @observable InfoCountry = '1'
   @observable DataCountry = []
+  @observable PicCountry = []
   @observable KeyReturn = ''
 
 //GPS MainMenu
