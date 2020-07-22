@@ -95,7 +95,9 @@ export default class LocalCountryProfil extends Component {
           rightComponent={{ icon: 'refresh', color: '#fff', onPress:()=>this.PrintData()}}
         />
 
-        {this.checkDataDownloaded()}
+        <ScrollView>
+          {this.checkDataDownloaded()}
+        </ScrollView>
 
 
       </View>

@@ -7,23 +7,50 @@ import Store from './../../global/store/Store'
 
 
 var data = [
-  {country: 'AFGHANISTAN', capitale: 'Kaboul', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/afghanistan/flag-800.png'},
-  {country: 'AFRIQUE DU SUD', capitale: 'Pretoria', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/south-africa/flag-800.png'},
-  {country: 'ALBANIE', capitale: 'Tirana', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/albania/flag-800.png'},
-  {country: 'ALGERIE', capitale: 'Alger', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/algeria/flag-800.png'},
-  {country: 'ALLEMAGNE', capitale: 'Berlin', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/germany/flag-800.png'},
-  {country: 'ANDORRE', capitale: 'Andorra la Vella', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/andorra/flag-800.png'},
-  {country: 'ARABIE SAOUDITE', capitale: 'Riad', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/saudi-arabia/flag-800.png'},
-  {country: 'ARGENTINE', capitale: 'Buenos Aires', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/argentina/flag-800.png'},
-  {country: 'ARMENIE', capitale: 'Eriwan', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/armenia/flag-800.png'},
-  {country: 'AUSTRALIE', capitale: 'Canberra', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/australia/flag-800.png'},
-  {country: 'AUTRICHE', capitale: 'Vienna', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/austria/flag-800.png'},
-  {country: 'BELGIQUE', capitale: 'Bruxelles', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/belgium/flag-800.png'},
-  {country: 'BRESIL', capitale: 'Brasília', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/brazil/flag-800.png'},
-  {country: 'CAMEROUN', capitale: 'Yaoundé', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/cameroon/flag-800.png'},
-  {country: 'CANADA', capitale: 'Ottawa', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/canada/flag-800.png'},
-  {country: 'CHILI', capitale: 'Santiago', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/chile/flag-800.png'},
-  {country: 'CHINE', capitale: 'Pékin', police: '1', firefighter: '2', rescue: '3', poison: '4', urlFlag: 'https://cdn.countryflags.com/thumbs/china/flag-800.png'},
+
+  {country: 'ALBANIE', capitale: 'Tirana', police: '129', firefighter: '128', rescue: '127', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/albania/flag-800.png'},
+  {country: 'ALLEMAGNE', capitale: 'Berlin', police: '110', firefighter: '112', rescue: '112', poison: '19240', urlFlag: 'https://cdn.countryflags.com/thumbs/germany/flag-800.png'},
+  {country: 'ANDORRE', capitale: 'Andorra la Vella', police: '110', firefighter: '118', rescue: '116', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/andorra/flag-800.png'},
+  {country: 'AUTRICHE', capitale: 'Vienna', police: '133', firefighter: '122', rescue: '144', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/austria/flag-800.png'},
+  {country: 'BELGIQUE', capitale: 'Bruxelles', police: '101', firefighter: '112', rescue: '112', poison: '070245245', urlFlag: 'https://cdn.countryflags.com/thumbs/belgium/flag-800.png'},
+  {country: 'BIELORUSSIE', capitale: 'Minsk', police: '102', firefighter: '101', rescue: '103', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/belarus/flag-800.png'},
+  {country: 'BULGARIE', capitale: 'Sofia', police: '166', firefighter: '112', rescue: '150', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/bulgaria/flag-800.png'},
+  {country: 'CROATIE', capitale: 'Zagreb', police: '+385192', firefighter: '+385193', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/croatia/flag-800.png'},
+  {country: 'DANEMARK', capitale: 'Copenhague', police: '112', firefighter: '112', rescue: '1813', poison: '82121212', urlFlag: 'https://cdn.countryflags.com/thumbs/denmark/flag-800.png'},
+  {country: 'ESPAGNE', capitale: 'Madrid', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/spain/flag-800.png'},
+  {country: 'ESTONIE', capitale: 'Tallinn', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/estonia/flag-800.png'},
+  {country: 'FINLANDE', capitale: 'Helsinki', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/finland/flag-800.png'},
+  {country: 'FRANCE', capitale: 'Paris', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/france/flag-800.png'},
+  {country: 'GRECE', capitale: 'Athènes', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/greece/flag-800.png'},
+  {country: 'GEORGIE', capitale: 'Tiflis', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/georgia/flag-800.png'},
+  {country: 'HONGRIE', capitale: 'Budapest', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/hungary/flag-800.png'},
+  {country: 'IRLANDE', capitale: 'Dublin', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/ireland/flag-800.png'},
+  {country: 'ISLANDE', capitale: 'Reykjavik', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/iceland/flag-800.png'},
+  {country: 'ITALIE', capitale: 'Rome', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/italy/flag-800.png'},
+  {country: 'KOSOVO', capitale: 'Pristina', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/kosovo/flag-800.png'},
+  {country: 'LETTONIE', capitale: 'Riga', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/latvia/flag-800.png'},
+  {country: 'LIECHTENSTEIN', capitale: 'Vaduz', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/liechtenstein/flag-800.png'},
+  {country: 'LITUANIE', capitale: 'Vilnius', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/lithuania/flag-800.png'},
+  {country: 'LUXEMBOURG', capitale: 'Luxembourg', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/luxembourg/flag-800.png'},
+  {country: 'MACEDOINE', capitale: 'Skopje', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/macedonia/flag-800.png'},
+  {country: 'MALTE', capitale: 'Valletta', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/malta/flag-800.png'},
+  {country: 'MOLDAVIE', capitale: 'Chisinau', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/moldova/flag-800.png'},
+  {country: 'MONACO', capitale: 'Monaco', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/monaco/flag-800.png'},
+  {country: 'MONTENEGRO', capitale: 'Podgorica', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/montenegro/flag-800.png'},
+  {country: 'NORVEGE', capitale: 'Oslo', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/norway/flag-800.png'},
+  {country: 'PAYS-BAS', capitale: 'Amsterdam', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/netherlands/flag-800.png'},
+  {country: 'POLOGNE', capitale: 'Varsovie', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/poland/flag-800.png'},
+  {country: 'PORTUGAL', capitale: 'Lisbonne', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/portugal/flag-800.png'},
+  {country: 'ROUMANIE', capitale: 'Bucarest', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/romania/flag-800.png'},
+  {country: 'ROYAUME-UNI', capitale: 'Londres', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/united-kingdom/flag-800.png'},
+  {country: 'SAINT-MARIN', capitale: 'Saint-marin', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/san-marino/flag-800.png'},
+  {country: 'SERBIE', capitale: 'Belgrade', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/serbia/flag-800.png'},
+  {country: 'SLOVAQUIE', capitale: 'Bratislava', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/slovakia/flag-800.png'},
+  {country: 'SLOVENIE', capitale: 'Ljubljana', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/slovenia/flag-800.png'},
+  {country: 'SUEDE', capitale: 'Stockholm', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/sweden/flag-800.png'},
+  {country: 'SUISSE', capitale: 'Bern', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/switzerland/flag-800.png'},
+  {country: 'UKRAINE', capitale: 'Kiev', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/ukraine/flag-800.png'},
+  {country: 'VATICAN', capitale: 'Vatican', police: '112', firefighter: '112', rescue: '112', poison: '112', urlFlag: 'https://cdn.countryflags.com/thumbs/vatican-city/flag-800.png'},
 ];
 
 var screen = Dimensions.get('window');
@@ -118,7 +145,6 @@ export default class EmergenciesMenu extends Component {
           }}
           leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:()=>this.props.navigation.navigate("MainMenu") }}
           centerComponent={{ text: 'URGENCES', style: { color: '#fff'} }}
-          rightComponent={{ icon: 'settings', color: '#fff', onPress:() => this.props.navigation.navigate("UserProfil")}}
         />
 
 

@@ -16,6 +16,14 @@ class Store {
   @observable PicCountry = []
   @observable KeyReturn = ''
 
+//FinderDestinations
+  @observable Continent_selected = ""
+  @observable Climat_selected = ""
+  @observable ResultsFinder = []
+
+//wishlist
+  @observable Wishlist = []
+
 //GPS MainMenu
   @observable CurrentCity = ''
   @observable CurrentCountry = ''
@@ -41,6 +49,14 @@ class Store {
 
   @action setUserTrips(param) {
     this.UserTrips = param;
+  }
+
+  @action setResultsFinder(param) {
+    this.ResultsFinder = param;
+  }
+
+  @action setWishlist(param) {
+    this.Wishlist = param;
   }
 
   @action setCurrentLocation(city, country, countryCode, lattitude, longitute) {

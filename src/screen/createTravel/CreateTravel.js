@@ -171,9 +171,8 @@ export default class createTravel extends Component {
           containerStyle={{
             backgroundColor: '#428B9D',
           }}
-          leftComponent={{ icon: 'home', color: '#fff', onPress:()=>this.props.navigation.navigate("MainMenu") }}
+          leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:()=>this.props.navigation.navigate("MainMenu") }}
           centerComponent={{ text: 'CREATION DE VOYAGE', style: { color: '#fff'} }}
-          rightComponent={{ icon: 'settings', color: '#fff', onPress:()=>this.props.navigation.navigate('UserProfil') }}
         />
 
         <View style={styles.body}>

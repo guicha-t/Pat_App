@@ -7,7 +7,7 @@ import Navigator from './src/routes/Drawer'
 import Store from './src/global/store/Store';
 
 export default function App() {
-
+console.disableYellowBox = true;
   return (
        <Provider Store={Store}>
           <Navigator/>

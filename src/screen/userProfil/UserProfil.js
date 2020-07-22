@@ -236,10 +236,36 @@ export default class UserProfil extends Component {
           await AsyncStorage.removeItem('LocalData');
           console.log("Success")
         } catch (error) {
-          // Error retrieving data
           console.log(error.message);
         }
     }
+
+
+  GoToWishlist() {
+    fetch('http://193.70.90.162/wishlist/', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: "Bearer " + Store.UserToken,
+      },
+    }).then(function(response) {
+        const statusCode = response.status
+        const data = response.json()
+        return Promise.all([statusCode, data]);
+      }).then(([statusCode, data]) => {
+        if (statusCode != 200) {
+          Alert.alert(data.message)
+        } else {
+          Store.setWishlist(data)
+          this.props.navigation.navigate("Wishlist")
+        }
+        console.log(statusCode)
+        console.log(data)
+      }).catch(error => {
+         console.error(error);
+     });
+  }
 
   contentOfBody(){
       if (!Store.IsLog) {
@@ -438,6 +464,13 @@ export default class UserProfil extends Component {
                 />
             </View>
 
+            <View style={{flex: 0.1, alignItems:'center', justifyContent:'center'}}>
+              <Button
+                buttonStyle={{height: 60, width: 300, backgroundColor: '#428B9D', marginBottom: 10}}
+                title="MA LISTE DE SOUHAITS"
+                onPress={()=>this.GoToWishlist()}
+                />
+            </View>
           </View>
         );
       }

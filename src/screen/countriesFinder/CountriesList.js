@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert, Image, Platform, Linking} from 'react-native';
-import NetInfo from "@react-native-community/netinfo";
 import { observer } from 'mobx-react';
 import {Header} from 'react-native-elements'
 
@@ -120,7 +119,6 @@ export default class CountriesList extends Component {
           }}
           leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:()=>this.props.navigation.navigate("MainMenu")}}
           centerComponent={{ text: 'LISTES DES PAYS', style: { color: '#fff'} }}
-          rightComponent={{ icon: 'settings', color: '#fff' }}
         />
         <View style={{flex: 1}}>
           <FlatList

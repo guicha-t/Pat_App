@@ -3,7 +3,6 @@ import {createAppContainer} from 'react-navigation'
 
 import SplashScreen from '../screen/splashScreen/SplashScreen'
 
-import CountriesMenu from '../screen/countriesFinder/CountriesMenu'
 import CountriesList from '../screen/countriesFinder/CountriesList'
 import CountriesPlanisphere from '../screen/countriesFinder/CountriesPlanisphere'
 import CountryProfil from '../screen/countriesFinder/CountryProfil'
@@ -12,6 +11,7 @@ import LocalCountryProfil from '../screen/countriesFinder/LocalCountryProfil'
 
 import CreateTravel from '../screen/createTravel/CreateTravel'
 import DestinationFinder from '../screen/destinationFinder/DestinationFinder'
+import DestinationFinderResults from '../screen/destinationFinder/DestinationFinderResults'
 
 import EmergenciesMenu from '../screen/emergencies/EmergenciesMenu'
 import ToolsMenu from '../screen/tools/ToolsMenu'
@@ -22,6 +22,8 @@ import SharingGPS from '../screen/tools/SharingGPS'
 import UserProfil from '../screen/userProfil/UserProfil'
 import UserTrips from '../screen/userProfil/UserTrips'
 import ChangePwd from '../screen/userProfil/changePwd'
+import Wishlist from '../screen/userProfil/Wishlist'
+
 
 import CustomDrawerContentComponent from './CustomDrawerContentComponent';
 
@@ -54,8 +56,8 @@ const RootDrawerNavigator = createDrawerNavigator({
   UserTrips: {
     screen: UserTrips,
   },
-  CountriesMenu: {
-    screen: CountriesMenu,
+  Wishlist: {
+    screen: Wishlist,
   },
   CountryProfil: {
     screen: CountryProfil,
@@ -65,6 +67,9 @@ const RootDrawerNavigator = createDrawerNavigator({
   },
   DestinationFinder: {
     screen: DestinationFinder,
+  },
+  DestinationFinderResults: {
+    screen: DestinationFinderResults,
   },
   EmergenciesMenu: {
     screen: EmergenciesMenu,

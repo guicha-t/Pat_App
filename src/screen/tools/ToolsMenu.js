@@ -20,9 +20,6 @@ export default class ToolsMenu extends Component {
     };
   }
 
-  componentDidMount() {
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -33,7 +30,6 @@ export default class ToolsMenu extends Component {
           }}
           leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:()=>this.props.navigation.navigate("MainMenu") }}
           centerComponent={{ text: 'OUTILS', style: { color: '#fff'} }}
-          rightComponent={{ icon: 'settings', color: '#fff' }}
         />
         <View style={styles.Body}>
           <View style={styles.topContainer}>

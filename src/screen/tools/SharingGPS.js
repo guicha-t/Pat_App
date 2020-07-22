@@ -62,7 +62,7 @@ export default class SharingGPS extends Component {
           containerStyle={{
             backgroundColor: '#428B9D',
           }}
-          leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:()=>this.props.navigation.navigate("MainMenu") }}
+          leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:()=>this.props.navigation.navigate("ToolsMenu") }}
           centerComponent={{ text: 'MA POSITION GPS', style: { color: '#fff'} }}
           rightComponent={{ icon: 'send', color: '#fff', onPress:()=>this.showDialog()}}
         />

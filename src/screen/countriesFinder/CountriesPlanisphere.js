@@ -89,7 +89,6 @@ export default class CountriesPlanisphere extends Component {
           }}
           leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:()=>this.props.navigation.navigate("MainMenu") }}
           centerComponent={{ text: 'PLANISPHERE', style: { color: '#fff' } }}
-          rightComponent={{ icon: 'settings', color: '#fff' }}
         />
         <View style={styles.bodyContainer}>
           <MapView

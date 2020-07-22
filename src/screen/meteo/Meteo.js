@@ -101,9 +101,8 @@ export default class Meteo extends Component {
           containerStyle={{
             backgroundColor: '#428B9D',
           }}
-          leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:()=>this.props.navigation.navigate("MainMenu") }}
+          leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:()=>this.props.navigation.navigate("ToolsMenu") }}
           centerComponent={{ text: 'METEO', style: { color: '#fff'} }}
-          rightComponent={{ icon: 'settings', color: '#fff' }}
         />
         <View style={{flex: 1}}>
           <View style={{flex: 0.1, flexDirection: 'row', paddingLeft: 20, paddingRight: 20}}>

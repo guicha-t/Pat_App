@@ -13,19 +13,22 @@ export default class CountryProfil extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      LocalData : ""
     };
   }
 
   componentDidMount() {
 
   }
-  
+
   getBack() {
     if (Store.KeyReturn == '1') {
       this.props.navigation.navigate("CountriesList")
-    } else {
+    } else if (Store.KeyReturn == '2'){
       this.props.navigation.navigate("CountriesPlanisphere")
+    } else if (Store.KeyReturn == '3'){
+      this.props.navigation.navigate("DestinationFinderResults")
+    } else if (Store.KeyReturn == '4'){
+      this.props.navigation.navigate("Wishlist")
     }
   }
 
@@ -38,7 +41,6 @@ export default class CountryProfil extends Component {
           }}
           leftComponent={{ icon: 'arrow-back', color: '#fff', onPress:()=>this.getBack()}}
           centerComponent={{ text: 'FICHE PAYS', style: { color: '#fff'} }}
-          rightComponent={{ icon: 'settings', color: '#fff' }}
         />
 
 
@@ -117,6 +119,20 @@ export default class CountryProfil extends Component {
             </View>
             <View style={{flex: 0.4, justifyContent:'center'}}><Text style={{fontWeight: 'bold'}}>Climat</Text></View>
             <View style={{flex: 0.4, justifyContent:'center'}}><Text>{Store.DataCountry.infPays.climat}</Text></View>
+          </View>
+
+          <View style={{ borderBottomWidth: 1, borderColor:'#428B9D', flexDirection: 'row', paddingTop: 10, paddingBottom: 10}}>
+            <View style={{flex: 0.2, alignItems:'center', justifyContent:'center'}}>
+              <Image source={require('./../../assets/countryProfil/city.png')} style={{width:40, height:40}}/>
+            </View>
+            <View style={{flex: 0.4, justifyContent:'center'}}><Text style={{fontWeight: 'bold'}}>Villes Principales</Text></View>
+            <View style={{flex: 0.4, justifyContent:'center'}}>
+              { Store.DataCountry.infPays.listeVilles.villes.map((item, key)=>(
+                <Text>{item}</Text>
+               )
+               )}
+
+            </View>
           </View>
 
           <ScrollView
